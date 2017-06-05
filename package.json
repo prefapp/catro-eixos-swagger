@@ -1,6 +1,7 @@
 {
   "name": "catro-eixos-swagger",
   "version": "1.0.0",
+  "repository": "https://github.com/prefapp/catro-eixos-swagger.git",
   "description": "Conector de catro-eixos-js para swagger",
   "main": "index.js",
   "dependencies": {
