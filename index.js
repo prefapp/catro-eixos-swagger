@@ -9,7 +9,7 @@ class Tramitador{
         this.procesador = procesador;
     }
 
-    tramitar(proceso, req, res, next){
+    tramitar(proceso, req, res){
 
         let tarea = this.__crearTarea(proceso, req.swagger.params);
 
