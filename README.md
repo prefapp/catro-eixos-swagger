@@ -1,5 +1,12 @@
 # catro-eixos-swagger
 
+## Convención de nombres de procesos
+
+En la definición de la api de swagger, la operationId debe observas las siguientes reglas:
+
+- *[Familia]_[operacion]*
+
+
 
 ## Uso
 

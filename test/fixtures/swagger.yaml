@@ -1,0 +1,201 @@
+definitions:
+  FicherosMultimedia:
+    type: "object"
+    properties:
+      offset:
+        type: "integer"
+        format: "int32"
+        description: "Posición en la paginación"
+      limit:
+        type: "integer"
+        format: "int32"
+        description: "Número de items a enviar (100 max)."
+      count:
+        type: "integer"
+        format: "int32"
+        description: "Total de items disponibles"
+      ficheros:
+        type: "array"
+        items:
+          type: "string"
+          example: "luz_casal_2017_as_pontes.mp4"
+          description: "id de un fichero multimedia"
+  FicheroMultimedia:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "luz_casal_2017_as_pontes.mp4"
+        description: "Identificador del fichero"
+      cacheado:
+        type: "boolean"
+        example: true
+        description: "El fichero se encuentra cacheado en local"
+      stats:
+        description: "Stats del fichero"
+        $ref: "#/definitions/FicheroMultimediaStats"
+      multimedia:
+        description: "Información Multimedia del fichero"
+        $ref: "#/definitions/FicheroMultimediaInfo"
+  FicheroMultimediaStats:
+    type: "object"
+    properties:
+      size:
+        type: "integer"
+        format: "int64"
+        example: 234234234
+        description: "Tamaño del fichero en bytes"
+      creado:
+        type: "string"
+        example: "2017-06-23T12:04:19.133Z"
+        description: "Fecha de creación del fichero (en local)"
+      md5:
+        type: "string"
+        example: "1abcb33beeb811dca15f0ac3e47b88d9"
+        description: "Firma MD5 del fichero (Hexadecimal)"
+  FicheroMultimediaInfo:
+    type: "object"
+    properties:
+      nb_streams:
+        type: "integer"
+        format: "int32"
+        example: 2
+        description: "Número de streams del fichero"
+      format_name:
+        type: "string"
+        example: "mov,mp4,m4a,3gp,3g2,mj2"
+        description: "Formatos empleados/aceptados"
+      format_long_name:
+        type: "string"
+        example: "QuickTime / MOV"
+        description: "Formato empleado"
+      start_time:
+        type: "string"
+        example: "0.000000"
+        description: "Segundo de comienzo del fichero"
+      duration:
+        type: "string"
+        example: "95.628883"
+        description: "Total en segundos"
+      bit_rate:
+        type: "string"
+        example: "2033413"
+        description: "BitRate de transmisión"
+      streams:
+        type: "array"
+        description: "Información sobre cada stream del fichero"
+        items:
+          $ref: "#/definitions/FicheroMultimediaInfoStream"
+  FicheroMultimediaInfoStream:
+    type: "object"
+    properties:
+      codec_name:
+        type: "string"
+        example: "h264"
+        description: "Tipo de codec del stream"
+      codec_long_name:
+        type: "string"
+        example: "H.264 / AVC / MPEG-4 AVC / MPEG-4 part 10"
+        description: "Descripción en formato largo del codec"
+      codec_type:
+        type: "string"
+        example: "video"
+        description: "Tipo de codificacion"
+      height:
+        type: "integer"
+        format: "int32"
+        example: 1080
+        description: "Resolución (altura)"
+      width:
+        type: "integer"
+        format: "int32"
+        example: 1920
+        description: "Resolución (anchura)"
+    description: "Información de un stream del fichero"
+  CompuestoMultimediaEntrada:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        example: "asdfasasdasasdasas"
+        description: "Identificador del Compuesto a crear"
+      selecciones:
+        $ref: "#/definitions/CompuestoMultimediaEntradaSelecciones"
+      refinados:
+        $ref: "#/definitions/CompuestoMultimediaEntradaRefinados"
+    description: "Conjunto de datos de creación"
+  CompuestoMultimediaEntradaSelecciones:
+    type: "array"
+    description: "Especificaciones de los ficheros multimedia y sus canales que sirven\
+      \ de base para crear el CompuestoMultimedia"
+    items:
+      $ref: "#/definitions/CompuestoMultimediaEntradaSeleccion"
+  CompuestoMultimediaEntradaSeleccion:
+    type: "object"
+    properties:
+      alias:
+        type: "string"
+        example: "high_video"
+        description: "Identificador de la selección"
+      fichero:
+        type: "string"
+        example: "luz_casal_2017_as_pontes_high.mp4"
+        description: "FicheroMultimedia de base"
+      stream:
+        type: "string"
+        example: "audio|video|num_stream"
+        description: "Identificador del stream del fichero"
+  CompuestoMultimediaEntradaRefinados:
+    type: "array"
+    description: "Combinaciones de selecciones para producir un compuesto final"
+    items:
+      $ref: "#/definitions/CompuestoMultimediaEntradaRefinado"
+  CompuestoMultimediaEntradaRefinado:
+    type: "object"
+    properties:
+      selecciones:
+        type: "array"
+        example:
+        - "high_video"
+        - "medium_video"
+        - "low_video"
+        - "audio"
+        description: "conjunto de alias de selecciones a combinar"
+        items:
+          type: "string"
+      maestro:
+        type: "string"
+        example: "high.mpd"
+        description: "nombre del fichero de output"
+  TareaId:
+    type: "string"
+    description: "Id de una tarea"
+    example: "\"\\\"\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\"1abcb33beeb811dca15f0ac3e47b88d9\\\
+      \\\\\\\\\\\\\\\\\\\\\\\\\\\\\"\\\\\\\\\\\\\\\"\\\\\\\"\\\"\""
+  Tarea:
+    type: "object"
+    properties:
+      id:
+        $ref: "#/definitions/TareaId"
+      estado:
+        type: "string"
+        example: "WAITING|PROCESSING|FINISHED"
+        description: "Estado de la tarea"
+      porcentaje_completado:
+        type: "number"
+        format: "float"
+        example: 65.333
+        description: "Porcentaje de completado de la tarea"
+      finalizada:
+        type: "string"
+        example: "OK|KO"
+        description: "Estado de finalización"
+      error:
+        type: "string"
+        example: "[SEGMENTACION][MEMORIA_INSUFICIENTE]"
+        description: "Cadena de error producido"
+      resultados:
+        type: "object"
+        description: "Datos específicos de cada tarea"
+        properties: {}
+    description: "Información de una tarea del sistema"
