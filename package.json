@@ -5,7 +5,7 @@
   "description": "Conector de catro-eixos-js para swagger",
   "main": "index.js",
   "dependencies": {
-    "catro-eixos-js": "^1.3.0",
+    "catro-eixos-js": "^1.5.4",
     "js-yaml": "^3.8.4",
     "uuid": "^3.0.1"
   },
