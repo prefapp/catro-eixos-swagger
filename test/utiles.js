@@ -1,3 +1,5 @@
+const {Tarea} = require("catro-eixos-js");
+
 module.exports = {
 
     testearSet: (setF) => {
@@ -12,6 +14,11 @@ module.exports = {
         }
 
         return error;
+    },
+
+    tarea: (id, args) => {
+
+        return new Tarea(id, args)
     }
 
 };
