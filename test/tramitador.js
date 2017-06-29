@@ -47,7 +47,7 @@ describe("Tramitador - Base", function(){
 
         T.tramitar("Test_proceso", {
 
-            args: {que_falle: {value: true}},
+            args: {que_falle: {value: false}},
 
             producto: "FicheroMultimedia",
 
