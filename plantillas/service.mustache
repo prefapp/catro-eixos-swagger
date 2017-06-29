@@ -1,0 +1,26 @@
+{{#operations}}
+{{#operation}}
+
+exports.{{{operationId}}} = function(req, res, next) {
+
+    req.refTramitador.tramitar(
+
+        "{{{operationId}}}", 
+
+        {
+            args: req.swagger.params, 
+
+            res: res, 
+
+            swagger: req.swagger.swaggerObject,
+
+            producto: "{{{returnType}}}"
+
+        }
+
+    );
+
+}
+
+{{/operation}}
+{{/operations}}
