@@ -56,7 +56,7 @@ class Tramitador{
                 p.res.setHeader('Content-Type', 'application/json');
                 //new TratarError(tarea, res).tratar();
 
-                p.res.end();
+                p.res.end(JSON.stringify(err));
 
             })
 
