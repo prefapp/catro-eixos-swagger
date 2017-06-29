@@ -104,6 +104,8 @@ module.exports = {
 
     "Tramitador": Tramitador,
 
-    "ProcesoSwagger": require("./lib/proceso_swagger.js")
+    "ProcesoSwagger": require("./lib/proceso_swagger.js"),
+
+    "CatroEixosSwaggerMiddleware": require("./middleware/tramitar.js")
 
 }

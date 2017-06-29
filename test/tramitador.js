@@ -47,7 +47,7 @@ describe("Tramitador - Base", function(){
 
         T.tramitar("Test_proceso", {
 
-            args: {},
+            args: {que_falle: {value: true}},
 
             producto: "FicheroMultimedia",
 
@@ -67,7 +67,7 @@ describe("Tramitador - Base", function(){
                         expect(r.id).to.be.equal("foo");
                         expect(r.multimedia.nb_streams).to.be.equal(5);
 
-                        //console.log(r); 
+                        console.log(r); 
                         hecho();
     
                     }

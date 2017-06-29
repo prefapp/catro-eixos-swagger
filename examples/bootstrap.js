@@ -16,9 +16,9 @@ module.exports = function(refSwagger){
 
         .then(({refProcesador, configuracion}) => {
 
-            new Tramitador(refProcesador, refSwagger)
+            let t = new Tramitador(refProcesador, refSwagger)
 
-            cumplida();
+            cumplida(t);
 
         })
         .catch((err) => {
