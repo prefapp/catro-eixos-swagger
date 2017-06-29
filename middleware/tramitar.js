@@ -8,7 +8,7 @@ class MiddleWareTramitar{
 
         return (req, res, next) => {
 
-            req.refTramitador = refTramitador;
+            req.refTramitador = this.refTramitador;
 
             next();
         }

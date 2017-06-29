@@ -37,6 +37,9 @@ Bootstrap(swaggerDoc)
         
           // Validate Swagger requests
           app.use(middleware.swaggerValidator());
+
+          //pasamos el tramitador
+          app.use(CatroEixosSwaggerMiddleware(refTramitador))
         
           // Route validated requests to appropriate controller
           app.use(middleware.swaggerRouter(options));
@@ -44,8 +47,6 @@ Bootstrap(swaggerDoc)
           // Serve the Swagger documents and Swagger UI
           app.use(middleware.swaggerUi());
 
-          //pasamos el tramitador
-          app.use(CatroEixosSwaggerMiddleware(refTramitador))
         
           // Start the server
           http.createServer(app).listen(serverPort, function () {
