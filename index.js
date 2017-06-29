@@ -3,7 +3,7 @@ const CE = require("catro-eixos-js");
 const UUIDV4 = require("uuid/v4");
 
 const TratarError = require("./lib/error.js");
-const CrearProductos = require("./lib/crear_productos.js");
+const CrearProductos = require("./lib/producto/constructor.js");
 
 const Transformador = require("./lib/transformador.js");
 
@@ -19,13 +19,13 @@ class Tramitador{
 
     crearProductos(){
 
-        this.productos = new CrearProductos(
+        this.productos = new CrearProductos()
 
-            this.swaggerRef
+            .construir(
 
-        ).crear();
+                this.swaggerRef.definitions
 
-        console.log(this.productos);
+            )
 
     }
 
@@ -44,7 +44,7 @@ class Tramitador{
                 let resultados = tarea.resultados;
 
                 if(tarea.resultados.__tiene_producto__){
-                    resultados = resultados.__producto__.getValores();
+                    resultados = resultados.__producto__;
                 }
 
                 p.res.end(JSON.stringify(resultados));
