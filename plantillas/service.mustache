@@ -1,11 +1,11 @@
 {{#operations}}
 {{#operation}}
 
-exports.{{{operationId}}} = function(req, res, next) {
+exports.{{{classname}}}_{{{operationId}}} = function(req, res, next) {
 
     req.refTramitador.tramitar(
 
-        "{{{operationId}}}", 
+        "{{{classname}}}.{{{operationId}}}", 
 
         {
             args: req.swagger.params, 
@@ -20,6 +20,27 @@ exports.{{{operationId}}} = function(req, res, next) {
 
     );
 
+}
+
+exports.{{{classname}}}_{{{operationId}}}_mock = function(req, res, next) {
+
+    {{#returnType}}
+        var examples = {};
+        {{#examples}}
+            examples['{{contentType}}'] = {{{example}}};
+        {{/examples}}
+    
+        if (Object.keys(examples).length > 0) {
+            res.setHeader('Content-Type', 'application/json');
+            res.end(JSON.stringify(examples[Object.keys(examples)[0]] || {}, null, 2));
+        } else {
+            res.end();
+        }
+    
+    {{/returnType}}
+        {{^returnType}}
+            res.end();
+    {{/returnType}}
 }
 
 {{/operation}}

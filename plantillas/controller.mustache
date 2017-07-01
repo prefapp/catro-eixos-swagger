@@ -5,8 +5,12 @@ var url = require('url');
 var {{classname}} = require('./{{classname}}Service');
 {{#operation}}
 
-module.exports.{{nickname}} = function {{nickname}} (req, res, next) {
-  {{classname}}.{{nickname}}(req, res, next);
+module.exports.{{classname}}_{{{operationId}}} = function (req, res, next) {
+  {{classname}}.{{classname}}_{{operationId}}(req, res, next);
+};
+
+module.exports.{{classname}}_{{{operationId}}}_mock = function (req, res, next) {
+  {{classname}}.{{classname}}_{{operationId}}_mock(req, res, next);
 };
 
 {{/operation}}

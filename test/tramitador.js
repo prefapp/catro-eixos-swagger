@@ -45,7 +45,7 @@ describe("Tramitador - Base", function(){
 
         let salida = {};
 
-        T.tramitar("Test_proceso", {
+        T.tramitar("Test.proceso", {
 
             args: {que_falle: {value: false}},
 
@@ -56,6 +56,8 @@ describe("Tramitador - Base", function(){
                 setHeader: (a, b) => {salida.header = [a, b]},
                 
                 end: (r) => {
+
+                    console.log(r);
 
                     try{
                         expect(r).to.be.an("string");
