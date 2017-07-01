@@ -1,4 +1,4 @@
-const {Tramitador} = require("../index.js");
+const Tramitador = require("../lib/tramitador.js");
 
 const {expect} = require("chai");
 
