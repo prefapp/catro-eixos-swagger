@@ -105,12 +105,11 @@ const {boot} = require("catro-eixos-js").Bootstrap;
 
 boot("Procesador cargado", () => {
 
-   return init({familia: __dirname + "/procesos"})
+    return this.initProcesador({
 
-        .then({refProcesador} => {
-            //lo seteamos en boot
-            this.setProcesador(refProcesador);
-        })
+        "MiFamiliaProcesos": __dirname + "/procesos"
+
+    })
 
 })
 
