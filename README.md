@@ -101,7 +101,7 @@ Para arrancar un servidor que sirva nuestra api necesitamos crear un boostrap (~
 ```js
 //boostrap.js
 
-const {boot} = require("catro-eixos-js").Bootstrap;
+const {boot} = require("catro-eixos-swagger").Bootstrap;
 
 boot("Procesador cargado", () => {
 
