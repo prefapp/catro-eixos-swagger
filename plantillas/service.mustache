@@ -14,7 +14,18 @@ exports.{{{classname}}}_{{{operationId}}} = function(req, res, next) {
 
             swagger: req.swagger.swaggerObject,
 
-            producto: "{{{returnType}}}"
+            producto: "{{{returnType}}}",
+
+    {{#vendorExtensions}}
+                
+        {{#x-catro-eixos-diferido}}
+            esDiferida: {{{x-catro-eixos-diferido}}},    
+        {{/x-catro-eixos-diferido}}
+        {{^x-catro-eixos-diferido}}
+            esDiferida: false,   
+        {{/x-catro-eixos-diferido}}
+                    
+    {{/vendorExtensions}}
 
         }
 
