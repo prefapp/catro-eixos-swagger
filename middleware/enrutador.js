@@ -48,6 +48,7 @@ class Enrutador{
 
                 {
                     args: req.swagger.params,
+                    req: req,
                     res: res,
                     swagger: req.swagger.swaggerObject,
                     producto: info.producto,
