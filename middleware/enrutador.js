@@ -2,20 +2,18 @@ const debug = require("debug")("catro-eixos-swagger:enrutador");
 
 class Enrutador{
 
-    constructor(controladores, opciones = {}){
+    constructor(modelosPeticiones, opciones = {}){
 
-        this.controladores = controladores;
+        this.modelosPeticiones = modelosPeticiones;
 
         this.debug = debug;
 
-        this.enMock = opciones.enMock || false;
     }
 
     enrutar(req, res, next){
 
         let operacion = this.__determinarOperacion(req); 
 
-        this.debug(`En Mock? ${this.enMock ? "Sí": "No"}`);
         this.debug(`${req.method} -> ${req.url}`);
         this.debug(`Se va a procesar? ${operacion ? "si": "no"}`);
 
@@ -33,24 +31,29 @@ class Enrutador{
         let manejador = this.__determinarManejador(req);
         let llamada = this.__determinarLlamada(req);
 
-        if(this.enMock) llamada += "_mock";
-
         this.debug(`Enrutando ${manejador} -> ${llamada}`);
 
-        let operacionId = (manejador) ? manejador + "_" + llamada : req.swagger.operation.operationId;
+        const modelo = this.modelosPeticiones[manejador + "Service"];
 
-        this.debug(`Operación ${operacionId}`);
-
-        let controlador = this.controladores[manejador];
-
-        this.debug(`Existe el controlador? ${ (controlador) ? "Sí" : "No" }`);
-        this.debug(`Existe el código? ${ (controlador[operacionId]) ? "Sí" : "No" }`);
-
-        if(!controlador){
-            
+        if(!modelo){
+            console.log(modelo);   
         }
         else{
-            return controlador[operacionId](req, res, next)
+
+            const info = modelo[manejador + "_" + llamada];
+
+            return req.refTramitador.tramitar(
+
+                `${manejador}.${llamada}`,
+
+                {
+                    args: req.swagger.params,
+                    res: res,
+                    swagger: req.swagger.swaggerObject,
+                    producto: info.producto,
+                    esDiferida: info.esDiferida
+                }
+            )
         }
 
     }

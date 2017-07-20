@@ -15,8 +15,6 @@ class MiddleWareTramitar{
         this.enMock = opciones.enMock || false;
 
         this.enrutador = false;
-
-        this.modelos = {};
         
     }
 
@@ -31,13 +29,17 @@ class MiddleWareTramitar{
 
                 .then((cargador) => {
 
-                    this.modelos = cargador.modelos;
+                    this.modelosPeticiones = cargador.modelosPeticiones;
 
-                    this.enrutador= new Enrutador(this.modelos, {
+                    this.enrutador= new Enrutador(
 
-                        enMock: this.enMock
+                        this.modelosPeticiones, 
+                        
+                        {
+                            enMock: this.enMock
 
-                    });
+                        }
+                    );
 
                     return this;
                 

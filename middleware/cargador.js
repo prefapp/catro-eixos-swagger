@@ -9,8 +9,7 @@ class CargadorControladores{
 
         this.ruta = ruta;
         this.debug = debug;
-        this.modelos = {};
-        this.servicios = {};   
+        this.modelosPeticiones = {};
     }
 
     cargar(){
@@ -44,13 +43,10 @@ class CargadorControladores{
 
                     this.__cargarModulo(f, "servicio");                    
                 }
-                else if(regEsModelo.test(f)){
-
-                    this.__cargarModulo(f, "modelo");                    
-                }
 
             })
 
+ //           this.debug(`${JSON.stringify(this.modelosPeticiones, 0, 3)}`)
             this.debug(`[FIN] Controladores cargados`);
 
             hecho();
@@ -72,16 +68,30 @@ class CargadorControladores{
 
         let nombreObjeto = nombre.replace(/\.js/, "");
 
-        this.debug(`Cargado ${tipo} con nombre ${nombre}`)
+        this.debug(`Cargado ${tipo} con nombre ${nombreObjeto} módulo ${nombre}`)
 
-        if(tipo === "modelo"){
-            this.modelos[nombreObjeto] = modulo;
-        }
-        else if(tipo === "servicio"){
-            this.servicios[nombreObjeto] = modulo;
+        if(tipo === "servicio"){
+            this.modelosPeticiones[nombreObjeto] = this.__cargarModelosPeticiones(modulo);
         }
     }
 
+    __cargarModelosPeticiones(modulo){
+
+        let peticiones =  {};
+
+        Object.keys(modulo)
+
+            .filter(v => v.match(/_info$/))
+
+            .forEach((p) => {
+
+                let nombrePeticionResuelta = p.match(/(.+)_info$/)[1];
+
+                peticiones[nombrePeticionResuelta] = modulo[p];
+            })
+
+        return peticiones;
+    }
 }
 
 module.exports = CargadorControladores;
