@@ -6,6 +6,8 @@ module.exports = {
 
     "ProcesoSwagger": require("./lib/proceso_swagger.js"),
 
-    "CatroEixosSwaggerMiddleware": require("./middleware/tramitar.js")
+    "CatroEixosSwaggerMiddleware": require("./middleware/tramitar.js"),
+
+    "ClienteSwagger": require("./lib/cliente.js")
 
 }
