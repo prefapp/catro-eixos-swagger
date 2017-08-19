@@ -27,7 +27,6 @@ class TestProceso extends ProcesoSwagger{
     KO__setInfoMultimedia(err){
         this.error(`[INFO_MULTIMEDIA][${err}]`);
     }
-
 }
 
 module.exports = TestProceso;

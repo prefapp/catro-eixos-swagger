@@ -51,6 +51,8 @@ describe("Tramitador - Base", function(){
 
             producto: "FicheroMultimedia",
 
+            req: {},
+
             res: {
                 
                 setHeader: (a, b) => {salida.header = [a, b]},
@@ -81,6 +83,55 @@ describe("Tramitador - Base", function(){
                 }
             }
 
+        })
+
+    })
+
+    it("Permite una asignación directa", function(hecho){
+
+        let T = new Tramitador(refProcesador, swaggerObjeto);
+
+        let salida = {};
+
+        T.tramitar("Test.proceso_directo", {
+
+            args: {que_falle: {value: false}},
+
+            producto: "FicheroMultimedia",
+
+            req: {},
+
+            res: {
+                
+                setHeader: (a, b) => {salida.header = [a, b]},
+                
+                end: (r) => {
+
+                    console.log(r);
+
+                    try{
+
+                        expect(r).to.be.an("string");
+
+                        r = JSON.parse(r);
+
+                        expect(r).to.be.an("object");
+
+                        expect(r.id).to.be.equal("foo");
+                        expect(r.multimedia.nb_streams).to.be.equal(5);
+
+                        console.log(r); 
+                        hecho();
+    
+                    }
+                    catch(e){
+                      console.log(e);
+                      hecho(1);
+                    }
+
+                }
+
+            }
         })
 
     })

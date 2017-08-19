@@ -50,11 +50,20 @@ class MiProceso extends ProcesoSwagger{
         this.producto().id = "foo";
 
     }
-    
+
     KO__mi_paso(err){
         //si seteamos un valor incorrecto
         //lo podemos controlar aquí
         // "[Producto][[id][Se esperaba un entero]]"
+    }
+
+    __mi_paso2(){
+        //se puede realizar una asignación directa de todo el 
+        //producto (realiza las validaciones)
+        this.asignarProducto({
+            id: "foo",
+            ...
+        })
     }
 }
 
