@@ -9,7 +9,7 @@
     "catro-eixos-js": "^2.2.3",
     "debug": "^2.6.8",
     "js-yaml": "^3.8.4",
-    "swagger-client": "^3.0.19",
+    "swagger-client": "^3.0.20",
     "swagger-tools": "^0.10.1",
     "uuid": "^3.0.1"
   },
