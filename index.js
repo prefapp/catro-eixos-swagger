@@ -8,6 +8,8 @@ module.exports = {
 
     "CatroEixosSwaggerMiddleware": require("./middleware/tramitar.js"),
 
+    "CatroEixosSwaggerMiddlewareSinConexion": require("./middleware/sin_conexion.js"),
+
     "ClienteSwagger": require("./lib/cliente.js")
 
 }
