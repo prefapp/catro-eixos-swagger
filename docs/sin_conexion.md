@@ -39,4 +39,30 @@ CatroEixosSwaggerMiddlewareSinConexion(
 
 ```
 
+### Ejemplo: tarea.js
+```js
+const {execTarea} = require('catro-eixos-js');
+const {CatroEixosSwaggerMiddlewareSinConexion} = require("catro-eixos-swagger");
+const init = require("./lib/init.js");
+
+execTarea( function() {
+
+  return init()
+  
+    .then((procesador, conf) => {
+    
+      CatroEixosSwaggerMiddlewareSinConexion(procesador,{
+
+        controladores: __dirname + "/routes/controllers" ,
+        swaggerApi: __dirname + "/api/swagger.yaml"
+
+      })
+
+      return procesador
+
+    })
+});
+
+```
+
 
