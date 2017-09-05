@@ -27,7 +27,8 @@ CatroEixosSwaggerMiddlewareSinConexion(
 
     {
         controladores: __dirname + "/controladores", //colocar donde tenemos los controladores generados
-        swaggerApi: __dirname + "/api/swagger.api" //ruta de la api de swagger
+        swaggerApi: __dirname + "/api/swagger.api", //ruta de la api de swagger
+        jobs:{tipo: "memoria"} //se le puede pasar también nuestra configuración de jobs
     }
 
 )

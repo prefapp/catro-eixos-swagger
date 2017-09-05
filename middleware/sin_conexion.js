@@ -12,6 +12,8 @@ const fs = require("fs"),
 
 const jsyaml = require('js-yaml');  
 
+const initJobs = require("catro-eixos-jobs").init;
+
 //se emplea para asociar los productos a los procesos 
 //sin necesidad de tirar de una api rest
 module.exports = function(refProcesador, opciones){
@@ -21,6 +23,18 @@ module.exports = function(refProcesador, opciones){
     opciones
   )
     .cargar()
+
+    .then(() => {
+
+      if(opciones.jobs){
+
+        console.log("INICIANDO DRIVER DE JOBS", opciones.jobs);
+
+        return initJobs(opciones.jobs)
+
+      }
+
+    })
 
     .then(() => {
       return {refProcesador}
