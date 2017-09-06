@@ -31,6 +31,12 @@ module.exports = function(refProcesador, opciones){
         console.log("INICIANDO DRIVER DE JOBS", opciones.jobs);
 
         return initJobs(opciones.jobs)
+    
+          .then(({driver}) => {
+
+            ProcesoSwagger.setRefDriverJobs(driver);
+
+          })
 
       }
 
