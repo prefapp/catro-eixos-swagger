@@ -8,11 +8,25 @@ class Enrutador{
 
         this.debug = debug;
 
+        this.cors = opciones.cors || false;
     }
 
     enrutar(req, res, next){
 
         let operacion = this.__determinarOperacion(req); 
+
+        if(this.cors){
+          res.setHeader("Access-Control-Allow-Origin", "*");
+        }
+
+        if(req.method == "OPTIONS"){
+          if(this.cors){
+            res.setHeader("Access-Control-Allow-Headers", "X-Api-Key");
+            res.statusCode = 200;
+            res.end();
+            return;
+          }
+        }
 
         this.debug(`${req.method} -> ${req.url}`);
         this.debug(`Se va a procesar? ${operacion ? "si": "no"}`);
