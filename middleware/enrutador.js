@@ -9,6 +9,7 @@ class Enrutador{
         this.debug = debug;
 
         this.cors = opciones.cors || false;
+        this.cors_metodos = opciones.cors_metodos;
     }
 
     enrutar(req, res, next){
@@ -17,6 +18,11 @@ class Enrutador{
 
         if(this.cors){
           res.setHeader("Access-Control-Allow-Origin", "*");
+
+          if(this.cors_metodos)
+            res.setHeader("Access-Control-Allow-Methods", this.cors_metodos);
+          else
+            res.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE, PUSH, PATCH");
         }
 
         if(req.method == "OPTIONS"){

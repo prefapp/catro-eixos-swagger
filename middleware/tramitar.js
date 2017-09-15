@@ -15,6 +15,7 @@ class MiddleWareTramitar{
         this.enMock = opciones.enMock || false;
 
         this.cors = opciones.cors || false;
+        this.cors_metodos = opciones.cors_metodos || false;
 
         this.enrutador = false;
         
@@ -39,7 +40,8 @@ class MiddleWareTramitar{
                         
                         {
                             enMock: this.enMock,
-                            cors: this.cors
+                            cors: this.cors,
+                            cors_metodos: this.cors_metodos
 
                         }
                     );
