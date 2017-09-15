@@ -21,7 +21,7 @@ class Enrutador{
 
         if(req.method == "OPTIONS"){
           if(this.cors){
-            res.setHeader("Access-Control-Allow-Headers", "X-Api-Key,Content-Type");
+            res.setHeader("Access-Control-Allow-Headers", "X-Api-Key,Content-Type,Accept");
             res.statusCode = 200;
             res.end();
             return;
