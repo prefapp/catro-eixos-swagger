@@ -6,7 +6,7 @@
   "main": "index.js",
   "dependencies": {
     "catro-eixos-jobs": "^1.2.4",
-    "catro-eixos-js": "^2.4.1",
+    "catro-eixos-js": "^2.4.2",
     "debug": "^2.6.8",
     "js-yaml": "^3.8.4",
     "swagger-client": "^3.0.20",
