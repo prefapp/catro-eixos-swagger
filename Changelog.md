@@ -1,5 +1,9 @@
 # Changelog 
 
+### v2.9.0 [19-09-2017]
+
+- Actualizada version de catro-eixos-js (v2.4.2)
+
 ### v2.8.9 [15-09-2017]
 
 - Se crea una nueva variable de configuracion cors_metodos
