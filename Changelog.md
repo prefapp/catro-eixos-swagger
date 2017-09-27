@@ -1,5 +1,10 @@
 # Changelog 
 
+### v2.9.1 [27-09-2017]
+
+- Integrada nueva version de catro-eixos-js
+- Eventos de nuevo_hito 
+
 ### v2.9.0 [19-09-2017]
 
 - Actualizada version de catro-eixos-js (v2.4.2)
