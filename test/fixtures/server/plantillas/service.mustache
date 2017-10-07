@@ -1,0 +1,40 @@
+{{#operations}}
+{{#operation}}
+
+exports.{{{classname}}}_{{{operationId}}}_info = {
+    
+    producto: "{{{returnType}}}",
+    
+        {{#vendorExtensions}}
+                
+            {{#x-catro-eixos-diferido}}
+                esDiferida: {{{x-catro-eixos-diferido}}},    
+            {{/x-catro-eixos-diferido}}
+            {{^x-catro-eixos-diferido}}
+                esDiferida: false,   
+            {{/x-catro-eixos-diferido}}
+                    
+        {{/vendorExtensions}}
+}
+exports.{{{operationId}}} = function({{#allParams}}{{paramName}}{{#hasMore}},{{/hasMore}}{{/allParams}}) {
+  return new Promise(function(resolve, reject) {
+  {{#returnType}}
+    var examples = {};
+    {{#examples}}
+    examples['{{contentType}}'] = {{{example}}};
+    {{/examples}}
+    if (Object.keys(examples).length > 0) {
+      resolve(examples[Object.keys(examples)[0]]);
+    } else {
+      resolve();
+    }
+    {{/returnType}}
+    {{^returnType}}
+    resolve();
+    {{/returnType}}
+  });
+}
+
+
+{{/operation}}
+{{/operations}}

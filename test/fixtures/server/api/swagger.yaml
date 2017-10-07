@@ -1,0 +1,139 @@
+---
+swagger: "2.0"
+info:
+  description: "Api del servicio de test de catro-eixos-swagger"
+  version: "0.0.1"
+  title: "Test Swagger"
+basePath: "/v1"
+tags:
+- name: "Job"
+  description: "Jobs del sistema de procesado"
+- name: "TrabajoLento"
+  description: "Trabajo lento"
+- name: "TrabajoRapido"
+  description: "Trabajo rápido"
+- name: "Hello"
+  description: "Hello del sistema"
+
+schemes:
+- "http"
+- "https"
+produces:
+- "application/json"
+consumes:
+- "application/json"
+
+securityDefinitions:
+  ApiKeyHeader:
+    type: apiKey
+    in: header
+    name: X-API-Key
+
+security:
+  - ApiKeyHeader: []
+
+paths:
+  /hello:
+    get:
+      tags:
+      - "Hello"
+      produces:
+      - "application/json"
+      parameters: []
+      x-swagger-router-controller: "Hello"
+      operationId: "hello_get"
+      responses:
+        200:
+          description: "Información del servidor de la API"
+          schema: 
+            $ref: "#/definitions/Hello"
+
+  /trabajo_lento:
+    get:
+      tags:
+       - "TrabajoLento"
+      summary: "Trabajo lento"
+      description: "Trabajo lento para probar jobs"
+      x-swagger-router-controller: "TrabajoLento"
+      x-catro-eixos-diferido: true
+      operationId: "trabajo_lento_get"
+      produces:
+      - "application/json"
+      parameters: []
+      responses:
+        200:
+          description: "Job solicitado"
+          schema:
+            $ref: "#/definitions/JobId"
+
+  /job/{id}:
+    get:
+      tags:
+      - "Job"
+      summary: "Job"
+      description: "Consulta de una job del sistema"
+      x-swagger-router-controller: "Job"
+      operationId: "job_get"
+      produces:
+      - "application/json"
+      parameters:
+      - name: "id"
+        in: "path"
+        description: "Id único de tarea"
+        type: "string"
+        required: true
+      responses:
+        200:
+          description: "Job solicitado"
+          schema:
+            $ref: "#/definitions/Job"
+definitions:
+
+  Hello:
+    type: "object"
+    properties:
+      version:
+        type: "string"
+        description: "Versión de la api servida"
+        example: "0.0.1"
+
+  JobId:
+    type: "object"
+    properties:
+      jobId:
+        type: "string"
+        description: "Id de un job"
+        example: "asdfasdfa"
+  Job:
+    type: "object"
+    properties:
+      id:
+        type: "string"
+        description: "Ide del job"
+        example: "asdfasdfa"
+      estado:
+        type: "string"
+        example: "WAITING|PROCESSING|FINISHED"
+        description: "Estado del job"
+      porcentaje_completado:
+        type: "number"
+        format: "float"
+        example: 65.333
+        description: "Porcentaje de completado del job"
+      finalizado:
+        type: "string"
+        example: "OK|KO"
+        description: "Estado de finalización"
+      error:
+        type: "string"
+        example: "[SEGMENTACION][MEMORIA_INSUFICIENTE]"
+        description: "Cadena de error producido"
+      resultados:
+        type: "object"
+        description: "Datos específicos de cada job"
+        properties: {}
+      hito:
+        type: "string"
+        example: "COMPLETANDO_TRABAJO"
+        description: "Cadena identificativa del paso ejecutado"
+    description: "Información de un job del sistema"

@@ -56,7 +56,8 @@ class Enrutador{
         const modelo = this.modelosPeticiones[manejador + "Service"];
 
         if(!modelo){
-            console.log(modelo);   
+            console.log(modelo);    
+            throw `[CatroEixos-Swagger][Panico][Modelo no encontrado]`
         }
         else{
 
