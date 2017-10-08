@@ -53,7 +53,14 @@ describe("Test con servidor de mock", function(){
 
     this.timeout(0);
 
-    Cliente.procesar("TrabajoLento", "trabajo_lento_get", {})
+    Cliente.procesarPost("TrabajoLento", "trabajo_lento_get", {
+
+      datos: {
+        nombre: "Trabajo TEst",
+        args: {a: 1, b: 2}
+      }
+
+    })
 
       .then(({body}) => {
 

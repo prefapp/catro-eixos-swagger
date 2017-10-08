@@ -7,7 +7,7 @@ exports.TrabajoLento_trabajo_lento_get_info = {
                 esDiferida: true,    
                     
 }
-exports.trabajo_lento_get = function() {
+exports.trabajo_lento_get = function(datos) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {

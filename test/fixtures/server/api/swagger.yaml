@@ -49,7 +49,7 @@ paths:
             $ref: "#/definitions/Hello"
 
   /trabajo_lento:
-    get:
+    post:
       tags:
        - "TrabajoLento"
       summary: "Trabajo lento"
@@ -59,7 +59,12 @@ paths:
       operationId: "trabajo_lento_get"
       produces:
       - "application/json"
-      parameters: []
+      parameters: 
+      - name: datos
+        in: body
+        description: "Datos del trabajo a realizar"
+        schema:
+          $ref: "#/definitions/TrabajoDatos"
       responses:
         200:
           description: "Job solicitado"
@@ -96,6 +101,17 @@ definitions:
         type: "string"
         description: "Versión de la api servida"
         example: "0.0.1"
+
+  TrabajoDatos:
+    type: "object"
+    properties:
+      nombre:
+        type: string
+        description: "Nombre del trabajo a realizar"
+      args:
+        type: "object"
+        description: "argumentos del trabajo a realizar"
+        properties: {}
 
   JobId:
     type: "object"
