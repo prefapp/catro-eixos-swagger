@@ -18,15 +18,17 @@ module.exports = class extends ProcesoSwagger{
 
       const i = setInterval(() => {
 
-        this.completado(v * 10);
+        this.completado(v * 1);
 
-        if(v++ >= 10){
+        this.resultado('f' + v, v)
+
+        if(v++ >= 100){
           clearInterval(i);
           cumplida();
         }
 
 
-      }, 1000)
+      }, 100)
 
     })
 
