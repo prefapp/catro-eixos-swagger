@@ -1,5 +1,11 @@
 # Changelog 
 
+### v2.10.1 [08-10-2017]
+
+- Cambio en forma de procesar jobs en mongo:
+  - Sistema completamente nuevo basado en buffer y tiempo
+- Cambios en cliente [issue](https://github.com/prefapp/catro-eixos-swagger/issues/8)
+
 ### v2.9.1 [27-09-2017]
 
 - Integrada nueva version de catro-eixos-js
