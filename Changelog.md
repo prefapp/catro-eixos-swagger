@@ -6,6 +6,10 @@
   - Sistema completamente nuevo basado en buffer y tiempo
 - Cambios en cliente [issue](https://github.com/prefapp/catro-eixos-swagger/issues/8)
 
+### v2.9.4 [31-10-2017]
+
+- catro-eixos-jobs@1.5.1
+
 ### v2.9.1 [27-09-2017]
 
 - Integrada nueva version de catro-eixos-js
