@@ -138,6 +138,49 @@ Estas tareas (se pueden poner las que queramos) se ejecutan secuencialmente.
 
 *Sólo es esencial la primera* (la inicialización del procesador de catro-eixos-js)
 
+### JWT
+
+Se puede introducir una autenticación mediante [JWT](https://jwt.io/).
+
+Para ello, basta con emplear el middleware de JWT:
+
+```js
+
+//index.js
+
+const {CatroEixosSwaggerMiddlewareJWT} = require("catro-eixos-swagger");
+
+const JWT = CatroEixosSwaggerMiddlewareJWT({
+
+    procesoValidar: "Foo.validar", //nombre del proceso de validación
+
+    secreto: "<SECRETO_GENERACION>",
+
+})
+
+
+//....
+
+start(swaggerDoc, opciones, (catroEixosMiddleware) => {
+
+    //¡IMPORTANTE! colocar esto después de swaggerMetadata y swaggerValidator
+    // y siempre antes de catroEixosMiddleware.aplicar()
+    app.use(middleware.swaggerSecurity({
+
+        "TU_KEY_NAME": JWT
+
+
+    }))
+
+})
+
+```
+El CatroEixosSwaggerMiddlewareJWT llamará a un proceso de nuestro proyecto para que realice la validación del Token enviado por la api y permitiéndole fijar elementos en la request o denegarla en caso de que le token no sea satisfactorio. 
+
+
+
+
+
 
 
 
