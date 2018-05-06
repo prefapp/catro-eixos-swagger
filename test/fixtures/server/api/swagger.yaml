@@ -14,6 +14,8 @@ tags:
   description: "Trabajo rápido"
 - name: "Hello"
   description: "Hello del sistema"
+- name: "User"
+  description: "Gestion de usuarios"
 
 schemes:
 - "http"
@@ -47,6 +49,28 @@ paths:
           description: "Información del servidor de la API"
           schema: 
             $ref: "#/definitions/Hello"
+
+  /login:
+    post:
+      tags:
+      - "User"
+      produces: 
+      - "application/json"
+      parameters:
+      - name: "credenciales"
+        in: "body"
+        description: "credenciales del usuario"
+        schema:
+          $ref: "#/definitions/Credenciales"
+      x-swagger-router-controller: "JWT"
+      operationId: "jwt_firmar"
+      security: []
+      responses:
+        200:
+          description: "Token de trabajo"
+          schema:
+            $ref: "#/definitions/Token"
+
 
   /trabajo_lento:
     post:
@@ -112,6 +136,24 @@ definitions:
         type: "object"
         description: "argumentos del trabajo a realizar"
         properties: {}
+
+  Credenciales:
+    type: "object"
+    properties:
+      usuario:
+        type: "string"
+        description: "Nombre del usuario"
+      password:
+        type: "string"
+        description: "Password del usuario"
+
+  Token:
+    type: "object"
+    properties:
+      token:
+        type: "string"
+        description: "Token de trabajo con la api"
+        example: "asdasdasdf"
 
   JobId:
     type: "object"
