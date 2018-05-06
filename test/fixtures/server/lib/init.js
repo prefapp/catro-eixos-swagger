@@ -9,6 +9,7 @@ module.exports = function(){
     "TrabajoLento" : __dirname + "/procesos/trabajo_lento",
     "Job" : __dirname + "/procesos/job",
     "JWT": __dirname + "/procesos/jwt",
+    "Login": __dirname + "/procesos/login",
 
   }).then((procesador) => {
 

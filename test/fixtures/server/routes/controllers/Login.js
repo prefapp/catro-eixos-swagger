@@ -1,11 +1,11 @@
 'use strict';
 
 var utils = require('../utils/writer.js');
-var User = require('../service/UserService');
+var Login = require('../service/LoginService');
 
-module.exports.jwt_firmar = function jwt_firmar (req, res, next) {
+module.exports.login_realizar = function login_realizar (req, res, next) {
   var credenciales = req.swagger.params['credenciales'].value;
-  User.jwt_firmar(credenciales)
+  Login.login_realizar(credenciales)
     .then(function (response) {
       utils.writeJson(res, response);
     })

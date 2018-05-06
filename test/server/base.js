@@ -9,7 +9,7 @@ describe("Test con servidor de mock", function(){
 
   before(function(hecho){
 
-    this.timeout(2500);
+    this.timeout(0);
 
     require("../fixtures/server/index.js");
 
@@ -18,6 +18,8 @@ describe("Test con servidor de mock", function(){
   })
 
   it("Permite arrancar un cliente", function(hecho){
+
+    this.timeout(0);
 
     new ClienteSwagger("http://localhost:8080/api-docs", {
 
@@ -37,6 +39,8 @@ describe("Test con servidor de mock", function(){
   })
 
   it("Permite realizar un hello", function(hecho){
+
+    this.timeout(0);
 
     Cliente.procesar("Hello", "hello_get", {})
 

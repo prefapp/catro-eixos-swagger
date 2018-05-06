@@ -1,5 +1,5 @@
 
-exports.User_jwt_firmar_info = {
+exports.Login_login_realizar_info = {
     
     producto: "Token",
     
@@ -7,7 +7,7 @@ exports.User_jwt_firmar_info = {
                 esDiferida: false,   
                     
 }
-exports.jwt_firmar = function(credenciales) {
+exports.login_realizar = function(credenciales) {
   return new Promise(function(resolve, reject) {
     var examples = {};
     examples['application/json'] = {

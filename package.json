@@ -9,16 +9,17 @@
     "catro-eixos-js": "^2.6.2",
     "debug": "^2.6.8",
     "js-yaml": "^3.8.4",
+    "jsonwebtoken": "^8.2.1",
     "swagger-client": "^3.0.20",
-    "swagger-tools": "^0.10.1",
+    "swagger-tools": "^0.10.3",
     "uuid": "^3.0.1"
   },
   "devDependencies": {
-    "chai": "^4.0.2",
+    "chai": "^4.1.2",
     "config": "^1.26.2",
     "connect": "^3.6.5",
     "js-yaml": "^3.8.4",
-    "mocha": "^3.4.2"
+    "mocha": "^3.5.3"
   },
   "scripts": {
     "test": "mocha --recursive"

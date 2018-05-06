@@ -14,8 +14,8 @@ tags:
   description: "Trabajo rápido"
 - name: "Hello"
   description: "Hello del sistema"
-- name: "User"
-  description: "Gestion de usuarios"
+- name: "Login"
+  description: "Gestion de login"
 
 schemes:
 - "http"
@@ -53,7 +53,7 @@ paths:
   /login:
     post:
       tags:
-      - "User"
+      - "Login"
       produces: 
       - "application/json"
       parameters:
@@ -62,8 +62,8 @@ paths:
         description: "credenciales del usuario"
         schema:
           $ref: "#/definitions/Credenciales"
-      x-swagger-router-controller: "JWT"
-      operationId: "jwt_firmar"
+      x-swagger-router-controller: "Login"
+      operationId: "login_realizar"
       security: []
       responses:
         200:

@@ -10,6 +10,8 @@ module.exports = {
 
     "CatroEixosSwaggerMiddlewareSinConexion": require("./middleware/sin_conexion.js"),
 
-    "ClienteSwagger": require("./lib/cliente.js")
+    "ClienteSwagger": require("./lib/cliente.js"),
+
+    "CatroEixosSwaggerMiddlewareJWT": require("./lib/jwt.js"),
 
 }

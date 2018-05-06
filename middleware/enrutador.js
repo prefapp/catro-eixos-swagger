@@ -37,12 +37,61 @@ class Enrutador{
         this.debug(`${req.method} -> ${req.url}`);
         this.debug(`Se va a procesar? ${operacion ? "si": "no"}`);
 
+
         if(!req.swagger) return next();
 
-        if(!operacion)
-            return this.__sinOperacion(req, res, next);
-        else
-            return this.__enrutar(req, res, next, operacion)
+        this.__ejecutarPreacciones(req, res).then((continuar) => {
+
+            if(!continuar) {
+                //hubo un error en una pretarea
+                //abortamos
+                return;
+            }
+
+            if(!operacion)
+                return this.__sinOperacion(req, res, next);
+            else
+                return this.__enrutar(req, res, next, operacion)
+
+        })
+
+    }
+
+    __ejecutarPreacciones(req, res, next){
+
+        this.debug(`Tiene preacciones? ${req.preacciones ? "si": "no"}`)
+
+        if(!req.preacciones) return Promise.resolve(true);
+
+        let preacciones = req.preacciones.map((preaccion) => {
+
+            let args = preaccion.args;
+
+            args.req = req;
+            args.res = res;
+            args.swagger = req.swagger.swaggerObject;
+
+            return req.refTramitador.tramitarPreaccion(
+
+                preaccion.proceso,
+
+                args
+
+            )   
+
+        });
+
+        return Promise.all(preacciones).then((tarea) => {
+
+            return true;
+
+        }).catch(({resultados}) => {
+
+            debug(`ERROR EN PRETAREA ${resultados.error}`)
+
+            return false;
+    
+        })
 
     }
 
