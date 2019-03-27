@@ -7,18 +7,17 @@
   "dependencies": {
     "catro-eixos-jobs": "^1.5.1",
     "catro-eixos-js": "^3.2.2",
-    "debug": "^2.6.8",
-    "js-yaml": "^3.8.4",
-    "swagger-client": "^3.0.20",
-    "swagger-tools": "^0.10.1",
+    "debug": "^2.6.9",
+    "swagger-client": "^3.8.25",
+    "swagger-tools": "^0.10.4",
     "uuid": "^3.0.1"
   },
   "devDependencies": {
     "chai": "^4.0.2",
     "config": "^1.26.2",
     "connect": "^3.6.5",
-    "js-yaml": "^3.8.4",
-    "mocha": "^3.4.2"
+    "js-yaml": "^3.13.0",
+    "mocha": "^6.0.2"
   },
   "scripts": {
     "test": "mocha --recursive"
